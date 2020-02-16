@@ -24,6 +24,10 @@
     <PackageVersion>1.0.0-alpha</PackageVersion>
     <Authors>Peter Bruinsma</Authors>
     <Company>Proliminal AB</Company>
+    <RepositoryUrl>https://github.com/23min/BlazorTools</RepositoryUrl>
+    <RepositoryType>Blazor Component (WebAssembly)</RepositoryType>
+    <AssemblyTitle>Blazor Tools</AssemblyTitle>
+    <Title>Blazor Tools</Title>
   </PropertyGroup>
 
 
