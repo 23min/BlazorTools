@@ -1,0 +1,28 @@
+
+@using Microsoft.AspNetCore.Components
+@using Proliminal.BlazorTools.Extensions
+
+@inject IJSRuntime jsRuntime
+
+<div class="shadow p-1 mb-5 bg-light rounded">
+
+    <pre class="pretty bg-light">@((MarkupString)Content)</pre>
+
+</div>
+
+
+@code {
+
+    [Parameter]
+    public string Code {get;set;}
+
+    private string Content {get;set;}
+
+    protected override async Task OnParametersSetAsync()
+    {
+        var json = await jsRuntime.FormatJson(Code);
+        Content = json.Colorize();
+
+        await base.OnParametersSetAsync();
+    }
+}

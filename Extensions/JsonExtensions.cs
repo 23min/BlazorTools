@@ -1,9 +1,17 @@
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Proliminal.BlazorTools.Extensions
 {
-    public static class PrettyMaker
+    public static class JsonExtensions
     {
+        public static string Colorize(this string value)
+        {
+            var lines = Lines(value);
+            return string.Join("", lines.Select(l => l.Decorate()).ToArray());
+        }
+
         public static string Decorate(this string row)
         {
             var sb = new StringBuilder();
@@ -12,7 +20,7 @@ namespace Proliminal.BlazorTools.Extensions
             if (row.Contains(":"))
             {
                 var kv = row.Split(':');
-                var style = (double.TryParse(kv[1], out double _) || int.TryParse(kv[1], out int _)) ? "val": "str";
+                var style = (double.TryParse(kv[1], out double _) || int.TryParse(kv[1], out int _)) ? "val" : "str";
                 sb.Append(@"<span class=""key"">");
                 sb.Append(kv[0]);
                 sb.Append(@"</span>");
@@ -32,6 +40,13 @@ namespace Proliminal.BlazorTools.Extensions
             sb.Append("</span>");
 
             return sb.ToString();
+        }
+
+        private static IEnumerable<string> Lines(string s)
+        {
+            using (var tr = new System.IO.StringReader(s))
+                while (tr.ReadLine() is string L)
+                    yield return L;
         }
     }
 }
