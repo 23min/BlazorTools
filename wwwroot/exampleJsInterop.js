@@ -4,5 +4,10 @@
 window.exampleJsFunctions = {
   showPrompt: function (message) {
     return prompt(message, 'Type anything here');
+  },
+
+  FormatJson: function (value) {
+    return JSON.stringify(JSON.parse(value), null, 3)
   }
 };
+
