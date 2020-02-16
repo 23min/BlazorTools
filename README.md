@@ -1,20 +1,22 @@
 # Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+I tried to use various highlighting solutions in a Blazor Client app without success.  
+BlazorTools provides a very lightweight component that formats and highlights code files. At the moment, only Json code is supported. 
 
 # Getting Started
 TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
+1.	Installation process  
+Reference Proliminal.BlazorTools and add the component to your Blazor page:
+
+`<Proliminal.BlazorTools.Editor Code=@forecasts></Proliminal.BlazorTools.Editor>`
+
 2.	Software dependencies
-3.	Latest releases
-4.	API references
+
+None.
 
 # Build and Test
 TODO: Describe and show how to build your code and run the tests. 
 
 # Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+I've not planned anything long-term for this. I'm just serving an immediate need. It's possible that I will add support for other languages (XML first), unless I find another lightweight solution that works inside Blazor Client side pages.
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+That said, contributions are welcome.

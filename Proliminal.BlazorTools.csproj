@@ -15,12 +15,15 @@
     <Copyright>Copyright © $([System.DateTime]::Now.ToString(yyyy))</Copyright>
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <VersionPrefix>0.1.0</VersionPrefix>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <VersionPrefix>1.0.0</VersionPrefix>
     <VersionSuffix></VersionSuffix>
     <FileVersion>$(VersionPrefix)</FileVersion>
     <PackageProjectUrl></PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageVersion>1.0.0-alpha</PackageVersion>
+    <Authors>Peter Bruinsma</Authors>
+    <Company>Proliminal AB</Company>
   </PropertyGroup>
 
 
