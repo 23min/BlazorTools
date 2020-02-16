@@ -6,9 +6,9 @@
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <Description>
-      Proliminal AB Blazor code highlighting component
+Proliminal AB Blazor code highlighting component
 
-      Keeping it as light as possible
+Keeping it as light as possible
     </Description>
     <Product>Proliminal.BlazorTools.CodeBlock</Product>
     <Company>Proliminal AB</Company>
@@ -21,7 +21,7 @@
     <FileVersion>$(VersionPrefix)</FileVersion>
     <PackageProjectUrl></PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageVersion>1.0.0-alpha</PackageVersion>
+    <PackageVersion>1.0.1-alpha</PackageVersion>
     <Authors>Peter Bruinsma</Authors>
     <Company>Proliminal AB</Company>
     <RepositoryUrl>https://github.com/23min/BlazorTools</RepositoryUrl>
