@@ -47,8 +47,13 @@ Run and enjoy:
 
     `<VuMeter Label="First" Value="25" MaxValue="100"></VuMeter>`
 
+Run and enjoy:
+
+![image](.assets/blazor-tools-vumeter-example.png)
+
 ---
 # Dependencies
+
 
 None.
 
