@@ -15,7 +15,8 @@ I also needed a VU meter to show the length of queues, so I created <strong>VuMe
 3. In `index.html` add a link to the stylesheet (omit if you create your own styles):
 
     ```
-    <link href="_content/Proliminal.BlazorTools/blazortools-styles.css" rel="stylesheet" />
+    <link href="_content/Proliminal.BlazorTools/blazortools-codeblock.css" rel="stylesheet" />
+    <link href="_content/Proliminal.BlazorTools/blazortools-meter.css" rel="stylesheet" />
     ```
 
 4. In `index.html` add a link to the javascript file that contains interop functions:

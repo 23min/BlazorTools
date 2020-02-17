@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System;
 
 namespace Proliminal.BlazorTools.Extensions
 {
@@ -16,6 +17,8 @@ namespace Proliminal.BlazorTools.Extensions
         {
             var sb = new StringBuilder();
 
+            Console.WriteLine(row);
+
             // split into key/value
             if (row.Contains(":"))
             {
@@ -26,7 +29,7 @@ namespace Proliminal.BlazorTools.Extensions
                 sb.Append(@"</span>");
                 sb.Append(@"<span class=""pun"">:</span>");
                 sb.Append($"<span class=\"{style}\">");
-                sb.Append(kv[1]);
+                sb.Append(string.Join(":", kv.Skip(1)));
                 sb.Append(@"</span>");
             }
             else
