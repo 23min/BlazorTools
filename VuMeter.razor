@@ -1,0 +1,75 @@
+@using Microsoft.AspNetCore.Components
+@using Proliminal.BlazorTools.Extensions
+@using System.Linq.Expressions
+
+@inject IJSRuntime jsRuntime
+
+<span class="meter-container">   
+    @if (@Label != null)
+    {
+        <span class="meter-label">@Label</span>
+    }
+    @for(var i=1; i<=segments; i++)
+    {
+        <span class="meter @MeterCssClassName(i)"></span>
+    }
+    <span class="meter-metric">@Value</span>
+</span>
+
+@code{
+
+    [Parameter]
+    public int Value {get;set;}
+
+    [Parameter]
+    public int MaxValue { get; set; } = 100;
+
+    [Parameter]
+    public int SegmentValue { get; set; } = 10;
+
+    [Parameter]
+    public string Label {get;set;}
+
+    [Parameter]
+    public int LabelWidth {get;set;}
+
+    [Parameter]
+    public double WarnLevel { get; set; } = 0.70;
+
+    [Parameter]
+    public double DangerLevel { get; set; } = 0.90;
+
+    private int segments;
+
+    private string MeterCssClassName(int segment)
+    {
+        double segmentValue = segment * SegmentValue;
+        var warnValue = MaxValue * WarnLevel;
+        var dangerValue = MaxValue * DangerLevel;
+
+        if (Value > MaxValue) return "meter-danger";
+        if (segmentValue <= Value)
+        {
+            if (segmentValue >= dangerValue) return "meter-danger";
+            if (segmentValue >= warnValue) return "meter-warn";
+            return "meter-value";
+        }
+        else
+        {
+            return "meter-neutral";
+        }
+    }
+
+    protected override Task OnInitializedAsync()
+    {
+
+        return base.OnInitializedAsync();
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        segments = MaxValue / SegmentValue;
+
+        await base.OnParametersSetAsync();
+    }
+}

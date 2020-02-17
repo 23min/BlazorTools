@@ -1,0 +1,54 @@
+.meter-container {
+    font-size: 10px;
+    font-weight: 600;
+    color: #586069;
+    white-space: nowrap;
+    cursor: default;
+    display: flex;
+    min-width:50px;
+}
+
+.meter {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-left: 1px;
+}
+
+.meter-neutral {
+    background-color: #eaedf1;
+}
+
+.meter-value {
+    background-color: #2cbe4e;
+}
+
+.meter-warn {
+    background-color: #ffc107;
+}
+
+.meter-danger {
+    background-color: crimson;
+}
+
+.meter-label
+{
+    line-height: 10px;
+    padding-left:4px;
+    text-overflow: ellipsis;
+    overflow:hidden;
+    white-space: nowrap;
+    padding-right:2px;
+    width: 150px;
+    min-width: 50px;
+}
+.meter-metric
+{
+    line-height: 10px;
+    padding-left:4px;
+    min-width:20px;
+}
+
+.flex-auto {
+    flex: auto!important;
+}
