@@ -47,8 +47,7 @@
         var warnValue = MaxValue * WarnLevel;
         var dangerValue = MaxValue * DangerLevel;
 
-        if (Value > MaxValue) return "meter-danger";
-        if (segmentValue <= Value)
+        if (segmentValue - SegmentValue < Value)
         {
             if (segmentValue >= dangerValue) return "meter-danger";
             if (segmentValue >= warnValue) return "meter-warn";
