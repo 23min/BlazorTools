@@ -70,6 +70,17 @@ VuMeters showing label sizes and values:
 
 None.
 
+# Changes
+
+1.0.6-preview1
+
+Added `SubValue` parameter. This allowes for a secondary value to be added in text in brackets. 
+Only the value in `Value` is rendered in blocks, so you are free to choose how to use `SubValue`. 
+For example, a queue may have scheduled items that are not in the queue yet. Queue depth can be rendered as `xxxx 40 [11]` with 40 items on the queue and 11 items scheduled to be enqueued.
+
+1.0.5 alpha
+
+
 
 # Contribute
 I've not planned anything long-term for this. I'm just serving an immediate need. It's possible that I will add support for other languages (XML first), unless I find another lightweight solution that works inside Blazor Client side pages.
