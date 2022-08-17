@@ -13,13 +13,16 @@
     {
         <span class="meter @MeterCssClassName(i)"></span>
     }
-    <span class="meter-metric">@Value</span>
+    <span class="meter-metric">@RenderValues()</span>
 </span>
 
 @code{
 
     [Parameter]
-    public int Value {get;set;}
+    public int Value { get; set;}
+
+    [Parameter] 
+    public int SubValue { get; set; }
 
     [Parameter]
     public int MaxValue { get; set; } = 100;
@@ -28,10 +31,10 @@
     public int SegmentValue { get; set; } = 10;
 
     [Parameter]
-    public string Label {get;set;}
+    public string Label { get; set; }
 
     [Parameter]
-    public int LabelWidth {get;set;}
+    public int LabelWidth { get; set; }
 
     [Parameter]
     public double WarnLevel { get; set; } = 0.70;
@@ -40,6 +43,19 @@
     public double DangerLevel { get; set; } = 0.90;
 
     private int segments;
+
+    protected override Task OnInitializedAsync()
+    {
+
+        return base.OnInitializedAsync();
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        segments = MaxValue / SegmentValue;
+
+        await base.OnParametersSetAsync();
+    }
 
     private string MeterCssClassName(int segment)
     {
@@ -59,16 +75,15 @@
         }
     }
 
-    protected override Task OnInitializedAsync()
+    private string RenderValues()
     {
-
-        return base.OnInitializedAsync();
-    }
-
-    protected override async Task OnParametersSetAsync()
-    {
-        segments = MaxValue / SegmentValue;
-
-        await base.OnParametersSetAsync();
+        if (SubValue == 0)
+        {
+            return $"{Value}";
+        }
+        else
+        {
+            return $"{Value} - [{SubValue}]";
+        }
     }
 }

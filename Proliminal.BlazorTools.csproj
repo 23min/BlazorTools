@@ -21,7 +21,7 @@ Keeping it as light as possible
     <FileVersion>$(VersionPrefix)</FileVersion>
     <PackageProjectUrl></PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageVersion>1.0.5-alpha</PackageVersion>
+    <PackageVersion>1.0.6-preview1</PackageVersion>
     <Authors>Peter Bruinsma</Authors>
     <Company>Proliminal AB</Company>
     <RepositoryUrl>https://github.com/23min/BlazorTools</RepositoryUrl>
