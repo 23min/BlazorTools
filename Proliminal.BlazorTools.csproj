@@ -16,12 +16,12 @@ Keeping it as light as possible
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <VersionPrefix>1.0.0</VersionPrefix>
+    <VersionPrefix>1.1.0</VersionPrefix>
     <VersionSuffix></VersionSuffix>
     <FileVersion>$(VersionPrefix)</FileVersion>
     <PackageProjectUrl></PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageVersion>1.0.7-preview2</PackageVersion>
+    <PackageVersion>1.1.0</PackageVersion>
     <Authors>Peter Bruinsma</Authors>
     <Company>Proliminal AB</Company>
     <RepositoryUrl>https://github.com/23min/BlazorTools</RepositoryUrl>

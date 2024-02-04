@@ -1,10 +1,11 @@
 @using Microsoft.AspNetCore.Components
 @using Proliminal.BlazorTools.Extensions
 @using System.Text.Json
+@using static Extensions.JsonExtensions
 
 @inject IJSRuntime jsRuntime
 
-<div class="code shadow p-1 bg-light rounded">
+<div class="code shadow p-1 pt-2 bg-light rounded">
     
     <button class="copy-code-button oi oi-clipboard" @onclick="() => CopyToClipboard(ClipboardJson)" title="Copy to Clipboard"></button>
 
@@ -30,36 +31,60 @@
 
     private async Task<(string, string)> FormatAndColorizeJson(string query)
     {
-        var validJson = query.StartsWith("{")
-            ? query
-            : JsonSerializer.Serialize(
-                new { Query = "\n" + query },
-                new JsonSerializerOptions { WriteIndented = true }
-            );
-        var formattedJson = await jsRuntime.FormatJson(validJson);
-        var colorizedJson = formattedJson.Colorize();
-        var displayJson = TransformForHtml(colorizedJson);
-        var clipboardJson = TransformForClipboard(formattedJson);
+        // Check if the input starts with "{" indicating it is JSON.
+        if (query.TrimStart().StartsWith("{"))
+        {
+            // It's JSON; process as before.
+            var validJson = query; // JSON input remains unchanged.
+            var formattedJson = await jsRuntime.FormatJson(validJson);
+            var colorizedJson = formattedJson.ColorizeJson();
+            var displayJson = TransformJsonForHtml(colorizedJson);
+            var clipboardJson = TransformForClipboard(formattedJson);
 
-        return (displayJson, clipboardJson);
+            return (displayJson, clipboardJson);
+        }
+        else
+        {
+            // It's plain text; treat it directly as text without JSON processing.
+            var (isPlainText, colorizedCode) = query.ColorizeCode();
+            var displayText = isPlainText
+                ? TransformForHtmlPlainText(colorizedCode)
+                : TransformKustoForHtml(colorizedCode);
+            var clipboardText = query; // Plain text for clipboard remains unchanged.
+
+            return (displayText, clipboardText);
+        }
     }
 
-    private string TransformForClipboard(string jsonString)
+    private string TransformForClipboard(string input)
     {
-        var jsonObject = JsonSerializer.Deserialize<Dictionary<string, string>>(jsonString);
-        var query = jsonObject?["Query"] ?? "";
-        query = query.Replace("\\n", "\n").Replace("\\\"", "\"");
-
-        return query;
-    }
-
-    private string TransformForHtml(string colorizedJsonString)
-    {
-        return colorizedJsonString
-            .Replace("\\r\\n", "\n") 
-            .Replace("\\r", "")
-            .Replace("\\n", "\n")
-            .Replace("\\\"", "\"");
+        // Check if the input is JSON by attempting to parse it.
+        // This is a more robust way to determine if the string is JSON, but for consistency with your approach,
+        // you might want to stick with the startsWith("{") check or implement this more thorough check.
+        if (input.TrimStart().StartsWith("{"))
+        {
+            try
+            {
+                // Attempt to deserialize as JSON and extract the "Query" property if present.
+                var jsonObject = JsonSerializer.Deserialize<Dictionary<string, object>>(input);
+                var query = jsonObject != null && jsonObject.ContainsKey("Query") 
+                    ? jsonObject["Query"].ToString() 
+                    : input;
+                // Perform any necessary replacements for clipboard formatting.
+                return query.Replace("\\n", "\n").Replace("\\\"", "\"");
+            }
+            catch (JsonException)
+            {
+                // In case of a JSON parsing error, return the input directly.
+                // This catch block might not be necessary if you're confident in your JSON checks.
+                return input;
+            }
+        }
+        else
+        {
+            // For plain text, return it directly without JSON processing.
+            return input;
+        }
     }
 
     private async Task CopyToClipboard(string code)

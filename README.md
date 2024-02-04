@@ -72,13 +72,17 @@ None.
 
 # Changes
 
+1.1.0
+
+Add syntax coloring for KUSTO queries in CodeBlock.
+
 1.0.7-preview2
 
 Add Clipboard support to CodeBlock.
 
 1.0.7-preview1
 
-Improved codeblock rendering.
+Improved CodeBlock rendering.
 
 1.0.6-preview1
 

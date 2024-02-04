@@ -1,40 +1,81 @@
 ﻿.pretty
 {
     font-size: 0.8rem;
-    /* background-color: #efefef; */
     line-height: 1rem;
     border: none;
 }
 pre.pretty{
-    margin-bottom:0rem;
+    margin-bottom: 0;
 }
 
-.key
-{
-    color: #3c3c3c;
-}
-.val /* TODO: Rename to .var */
-{
-    color: firebrick;
-}
-/* .str
-{
-    color: blue;
-} */
-.pun
-{
-    color: #111111
+/* Keywords */
+.kwd {
+    color: #999999; /* Dark grey */
+    /*font-weight: bold;*/
 }
 
+/* Comments */
+.com {
+    color: #777777; /* Medium grey */
+    font-style: italic;
+}
 
-/* TODO: Compatible with Google Prettify */
+/* Types, preprocessor statements, etc. */
+.typ {
+    color: #555555; /* Slightly lighter grey */
+    font-weight: bold;
+}
 
+/* Literals, boolean, etc. */
+.lit {
+    color: #555555; /* Same as types for a uniform look */
+}
+
+/* Punctuation */
+.pun {
+    color: #999999; /* Light grey */
+}
+
+/* Function calls */
+.func {
+    color: #333333; /* Dark grey, same as keywords */
+    font-weight: bold;
+}
+
+/* Numeric values */
+.num {
+    color: #000000; /* Black for contrast */
+    font-weight: bold;
+}
+
+/* String literals */
+.str {
+    color: #000000; /* Black, to stand out */
+    font-weight: bold;
+}
+
+/* General text */
 .pln {
-    color: #000
+    color: #000000; /* Black, unchanged for readability */
 }
+
+/* Key names in JSON or field names in KQL */
+.key {
+    color: #555555; /* Grey, matching types */
+    /*font-weight: bold;*/
+}
+
+/* Values in JSON (non-string, such as numbers, booleans) */
+.val {
+    color: #333333; /* Dark grey, matching keywords */
+    font-weight: bold;
+}
+
+
+
 
 .code {
-    position: relative; /* Add this line */
+    position: relative;
 }
 
 .copy-code-button {
@@ -48,7 +89,7 @@ pre.pretty{
     padding: 5px;
 }
 
-@media screen {
+/*@media screen {
     .str {
         color: #080
     }
@@ -92,9 +133,9 @@ pre.pretty{
     .fun {
         color: red
     }
-}
+}*/
 
-@media print,projection {
+/*@media print,projection {
     .kwd,.tag,.typ {
         font-weight: 700
     }
@@ -135,7 +176,7 @@ pre.pretty{
     .atv {
         color: #060
     }
-}
+}*/
 
 /* pre.prettyprint {
     padding: 2px;
