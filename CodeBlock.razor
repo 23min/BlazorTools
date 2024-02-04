@@ -1,9 +1,12 @@
 @using Microsoft.AspNetCore.Components
 @using Proliminal.BlazorTools.Extensions
+@using System.Text.Json
 
 @inject IJSRuntime jsRuntime
 
-<div class="shadow p-1 bg-light rounded">
+<div class="code shadow p-1 bg-light rounded">
+    
+    <button class="copy-code-button oi oi-clipboard" @onclick="() => CopyToClipboard(ClipboardJson)" title="Copy to Clipboard"></button>
 
     <pre class="pretty bg-light">@((MarkupString)Content)</pre>
 
@@ -16,11 +19,51 @@
 
     private string Content {get;set;}
 
+    private string ClipboardJson { get; set; }
+
     protected override async Task OnParametersSetAsync()
     {
-        var json = await jsRuntime.FormatJson(Code);
-        Content = json.Colorize();
+        (Content, ClipboardJson) = await FormatAndColorizeJson(Code);
 
         await base.OnParametersSetAsync();
+    }
+
+    private async Task<(string, string)> FormatAndColorizeJson(string query)
+    {
+        var validJson = query.StartsWith("{")
+            ? query
+            : JsonSerializer.Serialize(
+                new { Query = "\n" + query },
+                new JsonSerializerOptions { WriteIndented = true }
+            );
+        var formattedJson = await jsRuntime.FormatJson(validJson);
+        var colorizedJson = formattedJson.Colorize();
+        var displayJson = TransformForHtml(colorizedJson);
+        var clipboardJson = TransformForClipboard(formattedJson);
+
+        return (displayJson, clipboardJson);
+    }
+
+    private string TransformForClipboard(string jsonString)
+    {
+        var jsonObject = JsonSerializer.Deserialize<Dictionary<string, string>>(jsonString);
+        var query = jsonObject?["Query"] ?? "";
+        query = query.Replace("\\n", "\n").Replace("\\\"", "\"");
+
+        return query;
+    }
+
+    private string TransformForHtml(string colorizedJsonString)
+    {
+        return colorizedJsonString
+            .Replace("\\r\\n", "\n") 
+            .Replace("\\r", "")
+            .Replace("\\n", "\n")
+            .Replace("\\\"", "\"");
+    }
+
+    private async Task CopyToClipboard(string code)
+    {
+        await jsRuntime.InvokeVoidAsync("navigator.clipboard.writeText", code);
     }
 }

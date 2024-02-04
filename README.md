@@ -72,6 +72,14 @@ None.
 
 # Changes
 
+1.0.7-preview2
+
+Add Clipboard support to CodeBlock.
+
+1.0.7-preview1
+
+Improved codeblock rendering.
+
 1.0.6-preview1
 
 Added `SubValue` parameter. This allowes for a secondary value to be added in text in brackets. 

@@ -33,6 +33,21 @@ pre.pretty{
     color: #000
 }
 
+.code {
+    position: relative; /* Add this line */
+}
+
+.copy-code-button {
+    color: #99c6d7;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
 @media screen {
     .str {
         color: #080

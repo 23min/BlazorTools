@@ -21,7 +21,7 @@ Keeping it as light as possible
     <FileVersion>$(VersionPrefix)</FileVersion>
     <PackageProjectUrl></PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageVersion>1.0.6-preview1</PackageVersion>
+    <PackageVersion>1.0.7-preview2</PackageVersion>
     <Authors>Peter Bruinsma</Authors>
     <Company>Proliminal AB</Company>
     <RepositoryUrl>https://github.com/23min/BlazorTools</RepositoryUrl>
@@ -37,6 +37,12 @@ Keeping it as light as possible
   <PropertyGroup Condition="'$(VersionSuffix)'!=''">
     <AssemblyInformationalVersion>$(VersionPrefix)-$(VersionSuffix)</AssemblyInformationalVersion>
   </PropertyGroup>
+  <PropertyGroup>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\"/>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.1.2" />
